@@ -4,5 +4,6 @@
 /.project
 /.classpath
 
-/.static/css
-/.node_modules
+/static/css
+/node_modules
+/resources
