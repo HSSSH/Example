@@ -1,0 +1,8 @@
+/.idea/
+/.settings/
+/target/
+/.project
+/.classpath
+
+/.static/css
+/.node_modules

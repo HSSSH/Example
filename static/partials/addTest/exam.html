@@ -1,0 +1,27 @@
+<div class="addTest" ng-controller="addExamCtrl">
+    <div class="question-index">
+        <p>INDEX</p>
+        <span ng-repeat="item in examIndex" ng-click="changeQuestion($index)" ng-class="{'currentIndex':$index==currentQuestion}">第<i>{{$index+1}}</i>题</span>
+    </div>
+    <div class="question-content" ng-class="{'hasNoImg':!allQuestion[currentQuestion].hasImage}">
+        <div class="question-title">
+            <i>{{currentQuestion+1}}</i>
+            <span ng-bind="allQuestion[currentQuestion].question"></span>
+        </div>
+        <ul>
+            <li ng-repeat="answer in allQuestion[currentQuestion].answerList" ng-click="choose(answer)">
+                <i ng-class="{'choose':answer.choose}"></i>
+                <label>{{answer.index}}{{answer.text}}</label>
+                <img ng-if="answer.imgSrc" ng-src="{{answer.imgSrc}}">
+            </li>
+        </ul>
+        <div class="rightImgSwitch" ng-class="{'pointRight':allQuestion[currentQuestion].hasImage}" ng-click="allQuestion[currentQuestion].hasImage = !allQuestion[currentQuestion].hasImage">
+
+        </div>
+    </div>
+    <div class="question-img" ng-if="allQuestion[currentQuestion].hasImage">
+        <!--<img ng-src="{{allQuestion[currentQuestion].img}}">-->
+        <img ng-repeat="item in uploader.queue" ng-src="{{mmmmmmmmm}}">
+        <input type="file" nv-file-select="" uploader="uploader" multiple/>
+    </div>
+</div>

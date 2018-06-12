@@ -1,0 +1,32 @@
+<div class="exam" ng-controller="examCtrl">
+    <div class="exam-title">
+        <button class="btn btn-danger">Quit</button>
+        <button class="btn btn-primary">flag</button>
+        <button class="btn btn-success">calc</button>
+        <span ng-bind="data.leftTime | date:'HH:mm:ss'" ng-if="data.showLeftTime"></span>
+        <button class="btn btn-info" ng-click="data.showLeftTime=!data.showLeftTime">{{data.showLeftTime?'hide':'show'}}</button>
+        <button class="btn btn-warning" ng-click="currentQuestion=currentQuestion>0?currentQuestion-1:0">last</button>
+        <button class="btn btn-warning" ng-click="currentQuestion=currentQuestion<examIndex.length-1?currentQuestion+1:examIndex.length-1">next</button>
+        <button class="btn btn-success">summary</button>
+    </div>
+    <div class="question-index">
+        <p>INDEX</p>
+        <span ng-repeat="item in examIndex" ng-click="changeQuestion($index)" ng-class="{'currentIndex':$index==currentQuestion}">第<i>{{$index+1}}</i>题</span>
+    </div>
+    <div class="question-content" ng-class="{'hasNoImg':!allQuestion[currentQuestion].img}">
+        <div class="question-title">
+            <i>{{currentQuestion+1}}</i>
+            <span ng-bind="allQuestion[currentQuestion].question"></span>
+        </div>
+        <ul>
+            <li ng-repeat="answer in allQuestion[currentQuestion].answerList" ng-click="choose(answer)">
+                <i ng-class="{'choose':answer.choose}"></i>
+                <label>{{answer.index}}{{answer.text}}</label>
+                <img ng-if="answer.imgSrc" ng-src="{{answer.imgSrc}}">
+            </li>
+        </ul>
+    </div>
+    <div class="question-img" ng-if="allQuestion[currentQuestion].img">
+        <img ng-src="{{allQuestion[currentQuestion].img}}">
+    </div>
+</div>
