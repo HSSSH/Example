@@ -26,6 +26,7 @@
             'angularZhcsDirective': 'script/directive/zhcs.angular.directiveUtils-1.0.0',
             'angularZhcsService': 'script/service/zhcs.angular.serviceUtils-1.0.0',
             'slimscroll': 'js/jquery.slimscroll',
+            'appService': 'script/service/app.service',
 
             'app': 'script/app',  
             'appCtrl': 'script/controller/app.controller',
@@ -69,7 +70,7 @@
         }
     };
     require.config(config);
-    require(['jquery', 'angular', 'app',  'router',  'appCtrl','examCtrl','addTestCtrl'], function($, angular) {
+    require(['jquery', 'angular', 'app',  'router', 'appService', 'appCtrl','examCtrl','addTestCtrl'], function($, angular) {
     	angular.bootstrap(document, ['app']); //动态方式启动angular
     });
 })(window);

@@ -1,12 +1,22 @@
+<link rel="stylesheet" href="css/addTest.css" />
 <div class="addTest" ng-controller="addExamCtrl">
     <div class="question-index">
         <p>INDEX</p>
-        <span ng-repeat="item in examIndex" ng-click="changeQuestion($index)" ng-class="{'currentIndex':$index==currentQuestion}">第<i>{{$index+1}}</i>题</span>
+        <span ng-repeat="item in allQuestion" ng-click="changeQuestion($index)" ng-class="{'currentIndex':$index==currentQuestion}">第<i>{{$index+1}}</i>题</span>
     </div>
     <div class="question-content" ng-class="{'hasNoImg':!allQuestion[currentQuestion].hasImage}">
         <div class="question-title">
             <i>{{currentQuestion+1}}</i>
-            <span ng-bind="allQuestion[currentQuestion].question"></span>
+            <div ng-repeat="item in allQuestion[currentQuestion].question">
+                <img ng-if="item.hasSmallImg" ng-src="">
+                <span class="my-file-up smallImg" ng-if="item.hasSmallImg">
+                    <button>+</button>
+                    <input type="file" nv-file-select="" uploader="uploader"/>
+                </span>
+                <span contenteditable="true" ng-if="!item.hasSmallImg" class="question-text"></span>
+            </div>
+            <button ng-click="addQuestionPart(false)">添加文字</button>
+            <button ng-click="addQuestionPart(true)">添加图片</button>
         </div>
         <ul>
             <li ng-repeat="answer in allQuestion[currentQuestion].answerList" ng-click="choose(answer)">
@@ -20,8 +30,13 @@
         </div>
     </div>
     <div class="question-img" ng-if="allQuestion[currentQuestion].hasImage">
-        <!--<img ng-src="{{allQuestion[currentQuestion].img}}">-->
-        <img ng-repeat="item in uploader.queue" ng-src="{{mmmmmmmmm}}">
-        <input type="file" nv-file-select="" uploader="uploader" multiple/>
+        <div class="img-box" ng-repeat="item in uploader.queue">
+            <img ng-src="{{item.showImgResult}}">
+            <img src="images/icon/close.png" ng-click="removeImg(item)">
+        </div>
+        <div class="my-file-up">
+            <button>添加图片</button>
+            <input type="file" nv-file-select="" uploader="uploader"/>
+        </div>
     </div>
 </div>
